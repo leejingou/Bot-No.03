@@ -74,14 +74,16 @@
             z-index: 10;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 90%;
+            align-items: center;
+            max-width: 95%;
+            padding: 0 10px;
         }
         
         button {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 25px;
             font-size: 14px;
             font-weight: 500;
@@ -89,6 +91,8 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         button:hover {
@@ -106,6 +110,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            width: 100%;
+            max-width: 200px;
         }
         
         #ar-button:hover {
@@ -124,38 +130,95 @@
         }
         
         /* Mobile responsive */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             
             .subtitle {
-                font-size: 0.8em;
-            }
-            
-            button {
-                padding: 10px 18px;
-                font-size: 12px;
+                font-size: 0.85em;
             }
             
             .controls {
                 bottom: 15px;
                 gap: 8px;
+                max-width: 98%;
+            }
+            
+            button {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            
+            #ar-button {
+                max-width: 180px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6em;
+            }
+            
+            .subtitle {
+                font-size: 0.75em;
+            }
+            
+            button {
+                padding: 9px 14px;
+                font-size: 12px;
+            }
+            
+            .controls {
+                bottom: 12px;
+                gap: 6px;
             }
             
             .header {
-                padding: 15px;
+                padding: 12px;
+            }
+            
+            #ar-button {
+                max-width: 160px;
+                font-size: 13px;
             }
         }
         
         @media (max-width: 400px) {
             h1 {
-                font-size: 1.5em;
+                font-size: 1.4em;
+            }
+            
+            .subtitle {
+                font-size: 0.7em;
             }
             
             button {
-                padding: 8px 15px;
+                padding: 8px 12px;
                 font-size: 11px;
+            }
+            
+            .controls {
+                bottom: 10px;
+                gap: 5px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            #ar-button {
+                max-width: 200px;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            button {
+                padding: 7px 10px;
+                font-size: 10px;
             }
         }
     </style>
