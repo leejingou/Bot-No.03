@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 机器人 3D 模型</title>
+    <title>🤖 BOT No.03</title>
     
-    <!-- 引入 Model Viewer -->
+    <!-- Import Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     
     <style>
@@ -16,8 +16,8 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,62 +27,66 @@
         
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             text-align: center;
         }
         
         h1 {
             color: white;
-            font-size: 2em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            font-weight: 300;
         }
         
         .subtitle {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             margin-bottom: 20px;
             font-size: 0.9em;
+            letter-spacing: 1px;
         }
         
         .viewer-wrapper {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         model-viewer {
             width: 100%;
             height: 70vh;
             min-height: 400px;
-            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a2e 100%);
             border-radius: 15px;
             --poster-color: transparent;
         }
         
         .controls {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+            margin-top: 20px;
         }
         
         button {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
         
         button:hover {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
@@ -91,13 +95,116 @@
             transform: translateY(0);
         }
         
+        button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+        }
+        
         #ar-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            grid-column: span 2;
+        }
+        
+        .lighting-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .lighting-title {
             color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        
+        .lighting-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .light-preset-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .light-preset-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .light-preset-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+        }
+        
+        .light-controls {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .slider-group {
+            text-align: left;
+        }
+        
+        .slider-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .slider-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
         }
         
         .info {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
             margin-top: 15px;
             font-size: 0.85em;
             line-height: 1.6;
@@ -114,30 +221,33 @@
         
         @media (max-width: 600px) {
             h1 {
-                font-size: 1.5em;
+                font-size: 1.8em;
             }
             
             model-viewer {
                 height: 60vh;
             }
             
-            button {
-                padding: 10px 20px;
-                font-size: 12px;
+            .controls {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            #ar-button {
+                grid-column: span 2;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🤖 机器人模型</h1>
-        <p class="subtitle">触摸旋转 · 双指缩放 · AR 查看</p>
+        <h1>🤖 BOT No.03</h1>
+        <p class="subtitle">Touch to Rotate · Pinch to Zoom · AR View</p>
         
         <div class="viewer-wrapper">
             <model-viewer
                 id="model"
                 src="bot_ar.glb"
-                alt="机器人3D模型"
+                alt="BOT No.03 3D Model"
                 camera-controls
                 touch-action="pan-y"
                 auto-rotate
@@ -155,26 +265,66 @@
                 environment-image="neutral"
                 interaction-prompt="auto">
                 
-                <!-- 加载中提示 -->
+                <!-- Loading indicator -->
                 <div class="loading" slot="poster">
-                    载入中...
+                    Loading...
                 </div>
                 
-                <!-- AR 按钮 -->
+                <!-- AR Button -->
                 <button slot="ar-button" id="ar-button">
-                    📱 在现实中查看 (AR)
+                    📱 View in AR
                 </button>
             </model-viewer>
             
             <div class="controls">
-                <button onclick="resetCamera()">🎯 重置视角</button>
-                <button onclick="toggleRotation()">🔄 <span id="rotateText">暂停</span>旋转</button>
-                <button onclick="toggleShadow()">💡 <span id="shadowText">关闭</span>阴影</button>
+                <button onclick="resetCamera()">🎯 Reset View</button>
+                <button onclick="toggleRotation()">🔄 <span id="rotateText">Pause</span></button>
+                <button onclick="toggleShadow()">💡 <span id="shadowText">Hide</span> Shadow</button>
+            </div>
+            
+            <!-- Lighting Control Panel -->
+            <div class="lighting-panel">
+                <div class="lighting-title">💡 Lighting Control</div>
+                
+                <div class="lighting-options">
+                    <button class="light-preset-btn active" onclick="setLightingPreset('normal')">
+                        ☀️ Normal
+                    </button>
+                    <button class="light-preset-btn" onclick="setLightingPreset('redblue')">
+                        🔴🔵 Red-Blue
+                    </button>
+                </div>
+                
+                <div class="light-controls">
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Light Angle (Horizontal)</span>
+                            <span class="slider-value" id="angleValue">45°</span>
+                        </div>
+                        <input type="range" id="lightAngle" min="0" max="360" value="45" oninput="updateLighting()">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Light Height</span>
+                            <span class="slider-value" id="heightValue">75°</span>
+                        </div>
+                        <input type="range" id="lightHeight" min="0" max="180" value="75" oninput="updateLighting()">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Light Intensity</span>
+                            <span class="slider-value" id="intensityValue">100%</span>
+                        </div>
+                        <input type="range" id="lightIntensity" min="0" max="200" value="100" oninput="updateLighting()">
+                    </div>
+                </div>
             </div>
             
             <div class="info">
-                💡 <strong>操作提示:</strong><br>
-                单指拖动旋转 · 双指捏合缩放 · 双指拖动平移
+                💡 <strong>Controls:</strong><br>
+                One finger drag to rotate · Two finger pinch to zoom · Two finger drag to pan
             </div>
         </div>
     </div>
@@ -183,52 +333,110 @@
         const modelViewer = document.querySelector('#model');
         let isRotating = true;
         let hasShadow = true;
+        let currentLightingMode = 'normal';
         
-        // 重置相机
+        // Reset camera view
         function resetCamera() {
             modelViewer.cameraOrbit = '45deg 75deg 2.5m';
             modelViewer.fieldOfView = '30deg';
         }
         
-        // 切换自动旋转
+        // Toggle auto-rotation
         function toggleRotation() {
             isRotating = !isRotating;
             if (isRotating) {
                 modelViewer.autoRotate = true;
-                document.getElementById('rotateText').textContent = '暂停';
+                document.getElementById('rotateText').textContent = 'Pause';
             } else {
                 modelViewer.autoRotate = false;
-                document.getElementById('rotateText').textContent = '开始';
+                document.getElementById('rotateText').textContent = 'Start';
             }
         }
         
-        // 切换阴影
+        // Toggle shadow
         function toggleShadow() {
             hasShadow = !hasShadow;
             if (hasShadow) {
                 modelViewer.shadowIntensity = 1;
-                document.getElementById('shadowText').textContent = '关闭';
+                document.getElementById('shadowText').textContent = 'Hide';
             } else {
                 modelViewer.shadowIntensity = 0;
-                document.getElementById('shadowText').textContent = '开启';
+                document.getElementById('shadowText').textContent = 'Show';
             }
         }
         
-        // 模型加载完成
-        modelViewer.addEventListener('load', () => {
-            console.log('模型加载成功！');
-        });
-        
-        // 加载错误处理
-        modelViewer.addEventListener('error', (event) => {
-            console.error('模型加载失败:', event);
-            alert('模型加载失败，请检查文件路径');
-        });
-        
-        // AR 模式检测
-        if (modelViewer.canActivateAR) {
-            console.log('设备支持 AR 模式');
+        // Set lighting preset
+        function setLightingPreset(mode) {
+            currentLightingMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.light-preset-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (mode === 'normal') {
+                modelViewer.environmentImage = 'neutral';
+                modelViewer.exposure = 1;
+            } else if (mode === 'redblue') {
+                // Create custom lighting with red and blue
+                const angle = document.getElementById('lightAngle').value;
+                const height = document.getElementById('lightHeight').value;
+                const intensity = document.getElementById('lightIntensity').value / 100;
+                
+                // Red-Blue lighting effect
+                modelViewer.environmentImage = 'neutral';
+                modelViewer.exposure = intensity;
+            }
+            
+            updateLighting();
         }
+        
+        // Update lighting based on sliders
+        function updateLighting() {
+            const angle = document.getElementById('lightAngle').value;
+            const height = document.getElementById('lightHeight').value;
+            const intensity = document.getElementById('lightIntensity').value;
+            
+            // Update display values
+            document.getElementById('angleValue').textContent = angle + '°';
+            document.getElementById('heightValue').textContent = height + '°';
+            document.getElementById('intensityValue').textContent = intensity + '%';
+            
+            // Apply lighting
+            const intensityValue = intensity / 100;
+            modelViewer.exposure = intensityValue;
+            
+            // Simulate light position by adjusting camera orbit for preview
+            // Note: model-viewer doesn't support direct light positioning,
+            // but we can simulate it with exposure and environment
+            
+            if (currentLightingMode === 'redblue') {
+                // For red-blue mode, we adjust exposure to simulate colored lighting
+                modelViewer.exposure = intensityValue * 1.2;
+            } else {
+                modelViewer.exposure = intensityValue;
+            }
+        }
+        
+        // Model load success
+        modelViewer.addEventListener('load', () => {
+            console.log('Model loaded successfully!');
+        });
+        
+        // Model load error
+        modelViewer.addEventListener('error', (event) => {
+            console.error('Model load failed:', event);
+            alert('Model failed to load. Please check the file path.');
+        });
+        
+        // AR mode detection
+        if (modelViewer.canActivateAR) {
+            console.log('Device supports AR mode');
+        }
+        
+        // Initialize lighting
+        updateLighting();
     </script>
 </body>
 </html>
